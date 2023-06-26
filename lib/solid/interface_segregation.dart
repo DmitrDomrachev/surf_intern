@@ -2,6 +2,7 @@
 
 //Антипример. Собрал общий интерфейс для фигур, но он не подходит для прямой.
 // Лучше разделить его на несколько интерфейсов, и имплементировать только необходимые
+
 abstract interface class IFigure {
   String getColor();
 
@@ -10,7 +11,19 @@ abstract interface class IFigure {
   double getLength();
 }
 
-class Rectangle implements IFigure {
+abstract interface class IColor {
+  String getColor();
+}
+
+abstract interface class IArea {
+  double getArea();
+}
+
+abstract interface class ILength {
+  double getLength();
+}
+
+class Rectangle implements IColor, IArea, ILength {
   @override
   double getArea() {
     return 0.3;
@@ -27,12 +40,7 @@ class Rectangle implements IFigure {
   }
 }
 
-class Line implements IFigure {
-  @override
-  double getArea() {
-    throw UnimplementedError();
-  }
-
+class Line implements IColor, ILength {
   @override
   String getColor() {
     return 'black';
